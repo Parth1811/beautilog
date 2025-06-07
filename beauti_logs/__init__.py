@@ -1,7 +1,7 @@
 # fancy_log/__init__.py
+from .beauti_logger import get_logger
 from .color_console_handler import ColoredConsoleHandler
 from .constants import TERMINAL_COLORS
-from .fancy_logger import get_logger
 
 # Initialize logger at import time
 logger = get_logger()
