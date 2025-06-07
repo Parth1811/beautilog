@@ -1,0 +1,22 @@
+{
+    "save_to_file": true,
+    "file_logger": {
+        "log_file_path": "fancy-run.log",
+        "backup_count": 5,
+        "max_bytes": 104857600,
+        "log_level": "DEBUG"
+    },
+    "suppress_other_loggers": true,
+    "log_level": "INFO",
+    "custom_levels": {
+        "NOTIFICATION": 12
+    },
+    "level_colors": {
+        "CRITICAL": "RED",
+        "ERROR": "BRIGHT_RED",
+        "WARNING": "YELLOW",
+        "INFO": "CYAN",
+        "NOTIFICATION": "GREEN",
+        "DEFAULT": "RESET"
+    }
+}
