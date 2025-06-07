@@ -1,28 +1,32 @@
-Here’s a clean, developer-friendly **README.md** for your `fancy-log` project, including setup instructions, config usage, and examples:
+# 🌟 Beautilog
 
----
+**Beautilog** is a Python logging library for beautiful, color-coded terminal output with support for custom log levels, log rotation, and simple configuration through a JSON file.
 
-# 🌈 Fancy-Log
-
-**Fancy-Log** is a Python logging library for beautiful, color-coded terminal output with support for custom log levels, file logging, and simple JSON configuration.
-
-> ✨ *Because logs should be readable, not regrettable.*
+> ✨ *Because readable logs are beautiful logs.*
 
 ---
 
 ## 📦 Installation
 
+Install from PyPI:
+
 ```bash
-pip install -e .
+pip install beautilog
 ```
 
-Make sure `tqdm==4.66.5` is installed — it’s required for smooth console output.
+Or, for development:
+
+```bash
+git clone https://github.com/yourname/beautilog.git
+cd beautilog
+pip install -e .
+```
 
 ---
 
 ## ⚙️ Configuration: `fancy-log.json`
 
-Place a `fancy-log.json` file in your project root or in the same directory as the library. Here's a sample configuration:
+Beautilog looks for a `fancy-log.json` file in your working directory or library path. Example config:
 
 ```json
 {
@@ -49,71 +53,62 @@ Place a `fancy-log.json` file in your project root or in the same directory as t
 }
 ```
 
-### 🔍 Config Options
+### 🔧 Config Keys
 
-| Key                      | Description                                             |
-| ------------------------ | ------------------------------------------------------- |
-| `save_to_file`           | Whether to enable file logging                          |
-| `file_logger`            | File logging options (path, size, level, backups)       |
-| `log_level`              | Default log level (`DEBUG`, `INFO`, `ERROR`, etc.)      |
-| `custom_levels`          | Add your own custom levels (e.g. `NOTIFICATION`)        |
-| `level_colors`           | Map log levels to terminal colors                       |
-| `suppress_other_loggers` | Optionally suppress 3rd party logs like `asyncio`, etc. |
+| Key                      | Description                                        |
+| ------------------------ | -------------------------------------------------- |
+| `save_to_file`           | Enable/disable file logging                        |
+| `file_logger`            | File logging settings (path, size, backups)        |
+| `log_level`              | Default log level (`DEBUG`, `INFO`, etc.)          |
+| `custom_levels`          | Define your own log levels like `NOTIFICATION`     |
+| `level_colors`           | Customize terminal colors per level                |
+| `suppress_other_loggers` | Hide noisy loggers like `asyncio`, `urllib3`, etc. |
 
 ---
 
 ## 🚀 Example Usage
 
 ```python
-from fancy_log import logger
+from beautilog import logger
 
 logger.info("This is an info message.")
-logger.warning("This is a warning.")
+logger.warning("This is a warning!")
 logger.error("This is an error!")
 
-# Use custom log level
-logger.log(logger.NOTIFICATION, "Custom NOTIFICATION level log")
+# Custom level
+logger.log(logger.NOTIFICATION, "Custom NOTIFICATION level message")
 ```
 
-> ✅ Custom log levels like `NOTIFICATION` are registered automatically from the config.
+✅ Custom levels are automatically injected and styled from your config.
 
 ---
 
 ## 🎨 Supported Colors
 
-You can use any of these in the `level_colors` config:
+Use any of these in `level_colors`:
 
-* `"RED"`, `"YELLOW"`, `"GREEN"`, `"BLUE"`, `"MAGENTA"`, `"CYAN"`, `"WHITE"`
-* `"BRIGHT_RED"`, `"BRIGHT_YELLOW"`, `"BRIGHT_GREEN"`, `"BRIGHT_BLUE"`, etc.
-* `"RESET"` for default terminal color
-
----
-
-## 📂 Log File Output
-
-If `save_to_file` is enabled, logs will be saved to `fancy-run.log` (or the path you set in `file_logger.log_file_path`). It uses a **rotating file handler** with backup and size limits.
+* Basic: `RED`, `GREEN`, `YELLOW`, `BLUE`, `MAGENTA`, `CYAN`, `WHITE`
+* Bright: `BRIGHT_RED`, `BRIGHT_YELLOW`, etc.
+* Control: `RESET` (returns to default terminal color)
 
 ---
 
-## 💡 Tips
+## 📂 File Logging
 
-* To disable logging to a file, set `"save_to_file": false` in the config.
-* To see all messages (including `DEBUG`), lower the `log_level` in the config.
+If `"save_to_file": true`, logs are saved to `fancy-run.log` using a rotating file handler.
 
 ---
 
-## 🧪 Development
-
-Want to test it quickly?
+## 🧪 Quick Test
 
 ```bash
-python -c 'from fancy_log import logger; logger.info("hello from fancy-log!")'
+python -c 'from beautilog import logger; logger.info("Hello from Beautilog!")'
 ```
 
 ---
 
 ## 📜 License
 
-Apache License 2.0 — free for personal and commercial use.
+Licensed under the **Apache License 2.0** — free for personal and commercial use.
 
 ---
