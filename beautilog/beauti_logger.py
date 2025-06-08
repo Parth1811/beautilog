@@ -11,11 +11,11 @@ from tqdm import tqdm
 from .color_console_handler import ColoredConsoleHandler
 from .constants import TERMINAL_COLORS
 
-CONFIG_FILE = "fancy-log.json"
+CONFIG_FILE = "beauti-log.json"
 
 ABSOLUTE_PATH = os.path.abspath(os.path.dirname(__file__))
 
-CONFIG_FILE_ABS_PATH = os.path.join(ABSOLUTE_PATH, "../", CONFIG_FILE)
+CONFIG_FILE_ABS_PATH = os.path.join(ABSOLUTE_PATH, CONFIG_FILE)
 with open(CONFIG_FILE_ABS_PATH, 'r') as f:
     DEFAULT_CONFIG = json.load(f)
 
