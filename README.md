@@ -24,15 +24,15 @@ pip install -e .
 
 ---
 
-## ⚙️ Configuration: `fancy-log.json`
+## ⚙️ Configuration: `beauti-log.json`
 
-Beautilog looks for a `fancy-log.json` file in your working directory or library path. Example config:
+Beautilog looks for a `beauti-log.json` file in your working directory or library path. Example config:
 
 ```json
 {
   "save_to_file": true,
   "file_logger": {
-    "log_file_path": "fancy-run.log",
+    "log_file_path": "beauti-run.log",
     "backup_count": 5,
     "max_bytes": 104857600,
     "log_level": "DEBUG"
@@ -95,7 +95,7 @@ Use any of these in `level_colors`:
 
 ## 📂 File Logging
 
-If `"save_to_file": true`, logs are saved to `fancy-run.log` using a rotating file handler.
+If `"save_to_file": true`, logs are saved to `beauti-run.log` using a rotating file handler.
 
 ---
 

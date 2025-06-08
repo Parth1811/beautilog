@@ -74,5 +74,8 @@ def get_logger():
     for level_name, level_value in config.get("custom_levels", {}).items():
         logging.addLevelName(level_value, level_name.upper())
         setattr(logging, level_name.upper(), level_value)
+        setattr(logger, level_name.upper(), level_value)
+        setattr(logger, level_name.lower(), lambda msg, level=level_value: logger.log(level, msg))
+
 
     return logger
