@@ -2,7 +2,7 @@
 
 **Beautilog** is a Python logging library for beautiful, color-coded terminal output with support for custom log levels, log rotation, and simple configuration through a JSON file.
 
-> ✨ *Because readable logs are beautiful logs.*
+![Example output](example.png)
 
 ---
 
@@ -76,7 +76,7 @@ logger.warning("This is a warning!")
 logger.error("This is an error!")
 
 # Custom level
-logger.log(logger.NOTIFICATION, "Custom NOTIFICATION level message")
+logger.notification(f"Custom NOTIFICATION level {logger.NOTIFICATION} message")
 ```
 
 ✅ Custom levels are automatically injected and styled from your config.
