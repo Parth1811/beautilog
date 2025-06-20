@@ -41,6 +41,11 @@ def get_logger():
     if config.get("suppress_other_loggers", False):
         logger.handlers.clear()
 
+    for mute_loggger_name in config.get("disable_loggers",[]):
+        mute_logger = logging.getLogger(mute_loggger_name)
+        mute_logger.setLevel(logging.CRITICAL)
+        mute_logger.handlers.clear()
+
     formatter = logging.Formatter(
         '%(asctime)s : %(levelname)s : %(name)s : %(message)s',
         datefmt='%m/%d/%y %I:%M:%S %p'

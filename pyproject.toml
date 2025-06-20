@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "beautilog"
-version = "0.1.3"
+version = "0.1.4"
 description = "Beautiful, colorful, and configurable logging for Python"
 authors = [
     { name = "Parth Patil" }

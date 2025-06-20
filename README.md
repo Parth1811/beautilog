@@ -24,6 +24,14 @@ pip install -e .
 
 ---
 
+### 🧪 Quick Test
+
+```bash
+python -c 'from beautilog import logger; logger.info("Hello from Beautilog!")'
+```
+
+---
+
 ## ⚙️ Configuration: `beauti-log.json`
 
 Beautilog looks for a `beauti-log.json` file in your working directory or library path. Example config:
@@ -97,13 +105,6 @@ Use any of these in `level_colors`:
 
 If `"save_to_file": true`, logs are saved to `beauti-run.log` using a rotating file handler.
 
----
-
-## 🧪 Quick Test
-
-```bash
-python -c 'from beautilog import logger; logger.info("Hello from Beautilog!")'
-```
 
 ---
 
