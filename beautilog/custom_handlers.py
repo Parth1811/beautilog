@@ -17,3 +17,14 @@ class ColoredConsoleHandler(logging.StreamHandler):
         color_code = TERMINAL_COLORS.get(color_name.upper(), TERMINAL_COLORS["RESET"])
         myrecord.msg = color_code + str(myrecord.msg) + TERMINAL_COLORS["RESET"]
         super().emit(myrecord)
+
+
+class ForceLevelFilter(logging.Filter):
+    def __init__(self, level):
+        self.level = level
+
+    def filter(self, record):
+        # Change the level of the record to the forced one
+        record.levelno = self.level
+        record.levelname = logging.getLevelName(self.level)
+        return True

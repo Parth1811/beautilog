@@ -8,9 +8,9 @@ from logging.handlers import RotatingFileHandler
 
 from tqdm import tqdm
 
-from .color_console_handler import ColoredConsoleHandler
 from .config import Config
 from .constants import TERMINAL_COLORS
+from .custom_handlers import ColoredConsoleHandler, ForceLevelFilter
 
 
 def get_logger() -> logging.Logger:
@@ -60,5 +60,12 @@ def get_logger() -> logging.Logger:
         setattr(logger, level_name.upper(), level_value)
         setattr(logger, level_name.lower(), lambda msg, level=level_value: logger.log(level, msg))
 
+
+    for logger_name, level in config.sections.get("redirected_loggers", {}).items():
+        redirected_logger = logging.getLogger(logger_name)
+        stream_handler = logging.StreamHandler(out_stream)
+        stream_handler.addFilter(ForceLevelFilter(getattr(logging, level.upper(), logging.INFO)))
+        stream_handler.setFormatter(formatter)
+        redirected_logger.addHandler(stream_handler)
 
     return logger
