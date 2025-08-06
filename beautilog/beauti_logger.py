@@ -49,7 +49,7 @@ def get_logger() -> logging.Logger:
 
     console_handler = ColoredConsoleHandler(out_stream, config.sections.get("level_colors", {}))
     console_handler.setFormatter(formatter)
-    console_handler.setLevel(getattr(logging, config.sections.get("log_level", "INFO").upper(), logging.INFO))
+    console_handler.setLevel(getattr(logging, config.logger.get("log_level", "INFO").upper(), logging.INFO))
 
     logger.addHandler(console_handler)
     logger.setLevel(getattr(logging, config.logger.get("log_level", "INFO").upper(), logging.INFO))
