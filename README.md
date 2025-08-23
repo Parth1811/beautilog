@@ -108,6 +108,17 @@ If `"save_to_file": true`, logs are saved to `beauti-run.log` using a rotating f
 
 ---
 
+## 🚚 Deployment
+
+To deploy this to pypi use the following commands (only for maintainers)
+```bash
+python -m build
+twine upload dist/*
+```
+
+--
+
+
 ## 📜 License
 
 Licensed under the **Apache License 2.0** — free for personal and commercial use.
