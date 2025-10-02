@@ -32,33 +32,39 @@ python -c 'from beautilog import logger; logger.info("Hello from Beautilog!")'
 
 ---
 
-## ⚙️ Configuration: `beauti-log.json`
+## ⚙️ Configuration: `beautilog.ini`
 
-Beautilog looks for a `beauti-log.json` file in your working directory or library path. Example config:
+Beautilog looks for a `beautilog.ini` file in your working directory or library path. Example config:
 
-```json
-{
-  "save_to_file": true,
-  "file_logger": {
-    "log_file_path": "beauti-run.log",
-    "backup_count": 5,
-    "max_bytes": 104857600,
-    "log_level": "DEBUG"
-  },
-  "suppress_other_loggers": true,
-  "log_level": "INFO",
-  "custom_levels": {
-    "NOTIFICATION": 12
-  },
-  "level_colors": {
-    "CRITICAL": "RED",
-    "ERROR": "BRIGHT_RED",
-    "WARNING": "YELLOW",
-    "INFO": "CYAN",
-    "NOTIFICATION": "GREEN",
-    "DEFAULT": "RESET"
-  }
-}
+```ini
+[logger]
+name = root
+save_to_file = true
+log_level = INFO
+suppress_other_loggers = true
+disabled_loggers = []
+; disabled_loggers = ["numpy","matplotlib","urllib3"]
+
+
+[file_logger]
+log_file_path = beauti-run.log
+backup_count = 5
+max_bytes = 104857600
+log_level = DEBUG
+
+[custom_levels]
+NOTIFICATION = 12
+
+; [redirected_loggers]
+; numpy = DEBUG
+
+[level_colors]
+CRITICAL = RED
+ERROR = BRIGHT_RED
+WARNING = YELLOW
+INFO = CYAN
+NOTIFICATION = GREEN
+DEFAULT = RESET
 ```
 
 ### 🔧 Config Keys
@@ -71,6 +77,7 @@ Beautilog looks for a `beauti-log.json` file in your working directory or librar
 | `custom_levels`          | Define your own log levels like `NOTIFICATION`     |
 | `level_colors`           | Customize terminal colors per level                |
 | `suppress_other_loggers` | Hide noisy loggers like `asyncio`, `urllib3`, etc. |
+| `disabled_loggers`       | Specific loggers to be diabled                     |
 
 ---
 
