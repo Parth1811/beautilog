@@ -30,6 +30,12 @@ def get_logger() -> logging.Logger:
         datefmt='%m/%d/%y %I:%M:%S %p'
     )
 
+    for level_name, level_value in config.sections.get("custom_levels", {}).items():
+        logging.addLevelName(level_value, level_name.upper())
+        setattr(logging, level_name.upper(), level_value)
+        setattr(logger, level_name.upper(), level_value)
+        setattr(logger, level_name.lower(), lambda msg, level=level_value: logger.log(level, msg))
+
     if config.logger.get("save_to_file", True):
         file_handler = RotatingFileHandler(
             config.file_logger.get("log_file_path", "fancy-run.log"),
@@ -53,13 +59,6 @@ def get_logger() -> logging.Logger:
 
     logger.addHandler(console_handler)
     logger.setLevel(getattr(logging, config.logger.get("log_level", "INFO").upper(), logging.INFO))
-
-    for level_name, level_value in config.sections.get("custom_levels", {}).items():
-        logging.addLevelName(level_value, level_name.upper())
-        setattr(logging, level_name.upper(), level_value)
-        setattr(logger, level_name.upper(), level_value)
-        setattr(logger, level_name.lower(), lambda msg, level=level_value: logger.log(level, msg))
-
 
     for logger_name, level in config.sections.get("redirected_loggers", {}).items():
         redirected_logger = logging.getLogger(logger_name)
