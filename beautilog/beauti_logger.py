@@ -48,6 +48,23 @@ def get_logger() -> logging.Logger:
         file_handler.setLevel(getattr(logging, config.file_logger.get("log_level", "DEBUG").upper(), logging.DEBUG))
         logger.addHandler(file_handler)
 
+        def update_log_file_path(new_path: str):
+            nonlocal file_handler
+            logger.removeHandler(file_handler)
+            file_handler.close()
+            file_handler = RotatingFileHandler(
+                new_path,
+                mode='a',
+                maxBytes=config.file_logger.get("max_bytes", 10485760),
+                backupCount=config.file_logger.get("backup_count", 5),
+                encoding='utf-8'
+            )
+            file_handler.setFormatter(formatter)
+            file_handler.setLevel(getattr(logging, config.file_logger.get("log_level", "DEBUG").upper(), logging.DEBUG))
+            logger.addHandler(file_handler)
+
+        logger.update_log_file_path = update_log_file_path
+
     def write(self, x):
         if len(x.rstrip()) > 0:
             tqdm.write(x, file=self.file, end='')
